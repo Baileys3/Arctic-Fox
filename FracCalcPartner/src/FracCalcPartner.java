@@ -29,8 +29,8 @@ public class FracCalcPartner {
 		String frac1 = passer.next();
 		String symbol = passer.next();
 		String frac2 = passer.next();
-		int whole1 = wholeNum1(frac1);
-		int whole2 = wholeNum2(frac2);
+		int whole1 = wholeNum(frac1, symbol);
+		int whole2 = wholeNum(frac2, symbol);
 		int numerator1 = numerNum(frac1);
 		int numerator2 = numerNum(frac2);
 		int denominator1 = denomNum(frac1);
@@ -44,8 +44,10 @@ public class FracCalcPartner {
 				numerator1 *= denominator2;
 				denominator1 *= denominator2;
 				denominator2 = denominator1;
-
 			}
+			
+		} else if (symbol.contains("-")) {
+			
 		}
 		/*if(input.contains("+")) {
 			if(input.contains("_")) {
@@ -76,29 +78,24 @@ public class FracCalcPartner {
 		return null;
 	}
 
-	public static int wholeNum1(String frac) {
+	public static int wholeNum(String frac, String symbol) {
 		if (frac.contains("_")) {
 			return Integer.parseInt(frac.substring(0, frac.indexOf("_")));
 		} else if (!frac.contains("/")) {
-			if (frac.contains("+")) {
-				return Integer.parseInt(frac.substring(0, frac.indexOf("+")));
+			if (symbol.contains("+")) {
+				return Integer.parseInt(frac.substring(0, frac.length()));
+			} else if (symbol.contains("-")) {
+				return Integer.parseInt(frac.substring(0, frac.length()));
+			} else if (symbol.contains("*")) {
+				return Integer.parseInt(frac.substring(0, frac.length()));
+			} else if (symbol.contains("/")) {
+				return Integer.parseInt(frac.substring(0, frac.length()));
 			} else {
-				return 0;
-
+			
 			}
-
+			
 		}
 		return 0;
-	}
-
-	public static int wholeNum2(String frac) {
-		if (frac.contains("_")) {
-			return Integer.parseInt(frac.substring(0, frac.indexOf("_")));
-		} else if (!frac.contains("/")) {
-			return Integer.parseInt(frac.substring(0, frac.indexOf("+")));
-		} else {
-			return 0;
-		}
 	}
 
 	public static int numerNum(String frac) {
@@ -107,6 +104,7 @@ public class FracCalcPartner {
 		} else {
 			return 0;
 		}
+		
 	}
 
 	public static int denomNum(String frac) {
@@ -115,7 +113,9 @@ public class FracCalcPartner {
 		} else {
 			return 1;
 		}
+		
 	}
+	
 }
 
 
