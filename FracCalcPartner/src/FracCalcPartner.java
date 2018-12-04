@@ -36,6 +36,14 @@ public class FracCalcPartner {
 				return wholeAns + "";
 			}
 			if (numerAns >= denomAns) {
+				if (symbol.contains("+")) {
+					wholeAns += (numerAns / denomAns);
+					numerAns = numerAns % denomAns;
+					if (numerAns == 0) {
+						return wholeAns + "";
+					}	
+				}
+			} else if (symbol.contains("-")) {
 				wholeAns += (numerAns / denomAns);
 				numerAns = numerAns % denomAns;
 				if (numerAns == 0) {
@@ -58,7 +66,7 @@ public class FracCalcPartner {
 				if (numerAns == 0) {
 					return wholeAns + "";
 				} else {
-					return wholeAns + "_" + numerAns + "/" + denomAns;
+					return numerAns + "/" + denomAns;
 				}
 			} else {
 				return numerAns + "/" + denomAns;
@@ -107,6 +115,7 @@ public class FracCalcPartner {
 		}
 		return 0;
 	}
+
 	public static int numerAnsAdd(int numer1, int denom1, String symbol, int numer2, int denom2) {
 		if (denom1 == denom2) {
 			if (symbol.contains("+")) {
